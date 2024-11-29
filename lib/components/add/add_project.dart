@@ -128,40 +128,43 @@ class _AddProjectState extends State<AddProject> {
           ),
         ],
       ),
-      body: Container(
-        width: double.infinity,
-        padding: EdgeInsets.only(left: 10, top: 20, right: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Thông Tin Dự Án",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-            ),
-            SizedBox(height: 10),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.grey.shade300, width: 2),
+      body: SingleChildScrollView(
+        child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.only(left: 10, top: 20, right: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Thông Tin Dự Án",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
-              child: Column(
-                children: [
-                  _buildDocument('Tên Dự Án', titleController),
-                  _buildDocument('Người Tạo', userController),
-                  _buildDocumentIcon(
-                    'Ngày bắt đầu',
-                    startDateController,
-                  ),
-                  _buildDocumentIcon(
-                    'Ngày kết thúc',
-                    endDateController,
-                  ),
-                  _buildDocument('Tổng quan về dự án ', descriptionController),
-                ],
+              SizedBox(height: 10),
+              Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.grey.shade300, width: 2),
+                ),
+                child: Column(
+                  children: [
+                    _buildDocument('Tên Dự Án', titleController),
+                    _buildDocument('Người Tạo', userController),
+                    _buildDocumentIcon(
+                      'Ngày bắt đầu',
+                      startDateController,
+                    ),
+                    _buildDocumentIcon(
+                      'Ngày kết thúc',
+                      endDateController,
+                    ),
+                    _buildDocument(
+                        'Tổng quan về dự án ', descriptionController),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

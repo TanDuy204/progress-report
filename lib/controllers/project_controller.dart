@@ -82,7 +82,7 @@ class ProjectController extends GetxController {
     }
 
     project.address = address.value;
-
+    print(address.value);
     projects.refresh();
   }
 

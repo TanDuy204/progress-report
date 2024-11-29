@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intern_progressreport/controllers/project_controller.dart';
 import 'package:intern_progressreport/model/project_model.dart';
-import 'package:intern_progressreport/ui/screen/projects/documents/document_screen.dart';
 import 'package:intern_progressreport/ui/screen/projects/tasks/task_screen.dart';
 import 'package:intern_progressreport/ui/screen/projects/users/user_screen.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -208,145 +207,142 @@ class _ProjectDetailState extends State<ProjectDetail> {
           );
         },
       )),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.all(20),
-          width: double.infinity,
-          color: Colors.grey.shade200,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: Obx(
-                  () {
-                    var project = widget.projectController.projects.firstWhere(
-                      (proj) => proj.id == id,
-                      orElse: () => ProjectModel(
-                          id: '',
-                          title: '',
-                          about: '',
-                          endDay: '',
-                          startDay: '',
-                          status: '',
-                          user: '',
-                          createDay: ''),
-                    );
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(project.id),
-                        Text(
-                          project.title,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text(project.about),
-                        Row(
-                          children: [
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: getColorStatus(project.status),
-                              ),
-                              onPressed: () {
-                                showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) {
-                                    return Container(
-                                      padding: EdgeInsets.only(bottom: 20),
-                                      width: double.infinity,
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          buildStatus(
-                                              context, "Đang hoạt động", id),
-                                          buildStatus(context, 'Trì hoãn', id),
-                                          buildStatus(
-                                              context, 'Đã hoàn thành', id)
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                              child: Obx(
-                                () {
-                                  var project = widget
-                                      .projectController.projects
-                                      .firstWhere(
-                                    (proj) => proj.id == id,
-                                    orElse: () => ProjectModel(
-                                        id: '',
-                                        title: '',
-                                        about: '',
-                                        endDay: '',
-                                        startDay: '',
-                                        status: '',
-                                        user: '',
-                                        createDay: ''),
+      body: Container(
+        padding: EdgeInsets.all(20),
+        width: double.infinity,
+        color: Colors.grey.shade200,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: Obx(
+                () {
+                  var project = widget.projectController.projects.firstWhere(
+                    (proj) => proj.id == id,
+                    orElse: () => ProjectModel(
+                        id: '',
+                        title: '',
+                        about: '',
+                        endDay: '',
+                        startDay: '',
+                        status: '',
+                        user: '',
+                        createDay: ''),
+                  );
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(project.id),
+                      Text(
+                        project.title,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text(project.about),
+                      Row(
+                        children: [
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: getColorStatus(project.status),
+                            ),
+                            onPressed: () {
+                              showModalBottomSheet(
+                                context: context,
+                                builder: (context) {
+                                  return Container(
+                                    padding: EdgeInsets.only(bottom: 20),
+                                    width: double.infinity,
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        buildStatus(
+                                            context, "Đang hoạt động", id),
+                                        buildStatus(context, 'Trì hoãn', id),
+                                        buildStatus(
+                                            context, 'Đã hoàn thành', id)
+                                      ],
+                                    ),
                                   );
-                                  return Text(project.status);
                                 },
+                              );
+                            },
+                            child: Obx(
+                              () {
+                                var project = widget.projectController.projects
+                                    .firstWhere(
+                                  (proj) => proj.id == id,
+                                  orElse: () => ProjectModel(
+                                      id: '',
+                                      title: '',
+                                      about: '',
+                                      endDay: '',
+                                      startDay: '',
+                                      status: '',
+                                      user: '',
+                                      createDay: ''),
+                                );
+                                return Text(project.status);
+                              },
+                            ),
+                          ),
+                          Expanded(child: Container()),
+                          Builder(
+                            builder: (context) => GestureDetector(
+                              onTap: Scaffold.of(context).openEndDrawer,
+                              child: Icon(
+                                Icons.menu,
+                                color: Colors.lightBlue.shade900,
+                                size: 35,
                               ),
                             ),
-                            Expanded(child: Container()),
-                            Builder(
-                              builder: (context) => GestureDetector(
-                                onTap: Scaffold.of(context).openEndDrawer,
-                                child: Icon(
-                                  Icons.menu,
-                                  color: Colors.lightBlue.shade900,
-                                  size: 35,
-                                ),
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    );
-                  },
-                ),
+                          )
+                        ],
+                      )
+                    ],
+                  );
+                },
               ),
-              SizedBox(
-                height: 20,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
               ),
-              Container(
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Column(
-                  children: [
-                    _category(Icons.grid_view, "Nhận xét", () {
-                      Get.to(CommentScreen(), arguments: {'projectID': id});
-                    }),
-                    Divider(),
-                    _category(Icons.calendar_today, "Công việc", () {
-                      Get.to(TaskScreen(), arguments: {
-                        'id': id,
-                        'title': title,
-                        'status': status,
-                        'user': user,
-                        'starDay': startDay,
-                        'endDay': endDay,
-                        'about': about,
-                      });
-                    }),
-                    Divider(),
-                    _category(Icons.file_copy_outlined, "Tài liệu", () {
-                      Get.to(DocumentScreen());
-                    }),
-                    Divider(),
-                    _category(Icons.person, "Người dùng", () {
-                      Get.to(UserScreen());
-                    }),
-                  ],
-                ),
+              child: Column(
+                children: [
+                  _category(Icons.grid_view, "Nhận xét", () {
+                    Get.to(CommentScreen(), arguments: {'projectID': id});
+                  }),
+                  Divider(),
+                  _category(Icons.calendar_today, "Công việc", () {
+                    Get.to(TaskScreen(), arguments: {
+                      'id': id,
+                      'title': title,
+                      'status': status,
+                      'user': user,
+                      'starDay': startDay,
+                      'endDay': endDay,
+                      'about': about,
+                    });
+                  }),
+                  Divider(),
+                  _category(Icons.file_copy_outlined, "Tài liệu", () {
+                    Get.toNamed('/document');
+                  }),
+                  Divider(),
+                  _category(Icons.person, "Người dùng", () {
+                    Get.to(UserScreen());
+                  }),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

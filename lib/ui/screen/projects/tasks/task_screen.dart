@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intern_progressreport/components/add/add_tasks.dart';
 import 'package:intern_progressreport/controllers/task_controller.dart';
-import 'package:intern_progressreport/ui/screen/projects/tasks/task_detail/task_detail.dart';
 
 class TaskScreen extends StatelessWidget {
   TaskScreen({super.key});
@@ -71,20 +70,16 @@ Widget _buildListTasks(TaskController taskController, String titleProject) {
           var task = tasks[index];
           return GestureDetector(
             onTap: () {
-              Get.to(
-                  TaskDetail(
-                    taskController: taskController,
-                  ),
-                  arguments: {
-                    'id': task.id,
-                    'title': task.title,
-                    'about': task.about,
-                    'createDay': task.createDay,
-                    'deadline': task.deadline,
-                    'startDay': task.startDay,
-                    'endDay': task.endDay,
-                    'titleProject': titleProject,
-                  });
+              Get.toNamed('/taskDetail', arguments: {
+                'id': task.id,
+                'title': task.title,
+                'about': task.about,
+                'createDay': task.createDay,
+                'deadline': task.deadline,
+                'startDay': task.startDay,
+                'endDay': task.endDay,
+                'titleProject': titleProject,
+              });
             },
             child: Container(
               margin: EdgeInsets.only(bottom: 10),

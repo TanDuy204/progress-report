@@ -68,10 +68,7 @@ Widget _project(ProjectController projectController) {
             return GestureDetector(
               onTap: () {
                 projectController.getCurrentLocation(project);
-                Get.to(
-                    ProjectDetail(
-                      projectController: projectController,
-                    ),
+                Get.to(ProjectDetail(projectController: projectController),
                     arguments: {
                       'id': project.id,
                       'title': project.title,
@@ -112,7 +109,6 @@ Widget _project(ProjectController projectController) {
                     ),
                     Column(
                       children: [
-                        // Sử dụng PieChartProgress để thay thế Icon
                         PieChartProgress(percentage: project.percentage),
                         Text('${project.percentage.toInt()}%'),
                       ],
